@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "9bc2f23c-49b6-4a2d-97d0-bf289b249475",
+		"name": "spring core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var users = pm.response.json();\r",
+							"console.info(\"users\", users);\r",
+							"\r",
+							"pm.test(\"users data should be greater Than 0 => users = \" + users.length, () => pm.expect(users.length, \"\" ).greaterThan(0))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/spring_core_crud_project/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"spring_core_crud_project",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var createdUser = pm.response.json();\r",
+							"\r",
+							"console.info(\"created User\", createdUser);\r",
+							"\r",
+							"pm.test(\"user created succefully userId=\" + createdUser.id, () => pm.expect(createdUser.id).not.null)\r",
+							"\r",
+							"pm.collectionVariables.set('userId', createdUser.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"lastName\": \"CreatedUser\",\r\n    \"firstName\": \"Test\",\r\n    \"age\": 40\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/spring_core_crud_project/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"spring_core_crud_project",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsersByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var user = pm.response.json();\r",
+							"\r",
+							"console.info(\"retrieved User\", user);\r",
+							"\r",
+							"pm.test(\"user exist userId=\" + user.id, () => pm.expect(user.id).not.null)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/spring_core_crud_project/api/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"spring_core_crud_project",
+						"api",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModifyUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var modifiedUser = pm.response.json();\r",
+							"\r",
+							"console.info(\"created User\", modifiedUser);\r",
+							"\r",
+							"pm.test(\"user modified succefully userId=\" + modifiedUser.id, () => pm.expect(modifiedUser.id).not.null)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{userId}},\r\n    \"lastName\": \"UpdatedUser\",\r\n    \"firstName\": \"TestOK\",\r\n    \"age\": 41\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/spring_core_crud_project/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"spring_core_crud_project",
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUserByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var deletedRows = pm.response.json();\r",
+							"\r",
+							"console.info(\"deleted Rows\", deletedRows);\r",
+							"\r",
+							"pm.test(\"deleted Rows=\" + deletedRows, () => pm.expect(deletedRows).equal(1))\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9191/spring_core_crud_project/api/users/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"spring_core_crud_project",
+						"api",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": ""
+		}
+	]
+}
