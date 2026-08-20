@@ -14,7 +14,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping(value = {"/",  "/users" })
+	@GetMapping(value = {"",  "/users" })
 	public String getAllUsers(Model model) {
 		model.addAttribute(USERS, userService.getAllUsers());
 		model.addAttribute("user", new User());
@@ -30,7 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/users/edit/{id}")
-	public String editUser(@PathVariable(name = "id") Long id, Model model) {
+	public String editUser(@PathVariable Long id, Model model) {
 		User user = userService.findUserById(id);
 		model.addAttribute("user", user);
 		model.addAttribute(USERS, userService.getAllUsers());
@@ -46,7 +46,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/users/delete/{id}")
-	public String deleteUser(@PathVariable(name = "id") Long id) {
+	public String deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
 		return "redirect:/users";
 	}

@@ -1,0 +1,16 @@
+CREATE DATABASE `spring` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- spring.users definition
+
+use spring;
+
+CREATE TABLE `users` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` varchar(100) DEFAULT NULL,
+  `LAST_NAME` varchar(100) DEFAULT NULL,
+  `AGE` int DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO spring.users (FIRST_NAME, LAST_NAME, AGE) VALUES('Othman', 'BOUAZZAOUI', 29);
+INSERT INTO spring.users (FIRST_NAME, LAST_NAME, AGE) VALUES('Ahmed', 'Test', 30);
+INSERT INTO spring.users (FIRST_NAME, LAST_NAME, AGE) VALUES('khaled', 'wadie', 35);
