@@ -14,6 +14,10 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>6.1.0</spring.version>
+		<spring-data-jpa.version>3.5.12</spring-data-jpa.version>
+		<hibernate.version>6.4.0.Final</hibernate.version>
+		<jakarta-persistence.version>3.1.0</jakarta-persistence.version>
+		<hikaricp.version>6.3.2</hikaricp.version>
 		<cargo-maven3-plugin.version>1.10.12</cargo-maven3-plugin.version>
 	</properties>
 
@@ -44,7 +48,47 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+		<!-- Spring ORM for JPA support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring-data-jpa.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Jakarta Persistence API (Spring 6 requires jakarta instead of javax) -->
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>${jakarta-persistence.version}</version>
+		</dependency>
+
+		<!-- Hibernate ORM for JPA implementation -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<!-- Connection pool -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikaricp.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>tools</artifactId>
+					<groupId>com.sun</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- Spring 6+ requires Jakarta EE instead of javax -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>

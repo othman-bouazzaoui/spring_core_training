@@ -1,6 +1,7 @@
 package com.oth.service;
 
 import com.oth.dao.jdbc.UserRepositoryJdbc;
+import com.oth.dao.jpa.UserRepository;
 import com.oth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,34 +17,42 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepositoryJdbc userRepositoryJdbc;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public List<User> getAllUsers() {
-        return userRepositoryJdbc.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User createUser(User user) {
         //user.setId(ThreadLocalRandom.current().nextLong(Long.MAX_VALUE));
         //users.add(user);
-        return userRepositoryJdbc.createUser(user);
+        //return userRepositoryJdbc.createUser(user);
+        return userRepository.save(user);
     }
 
     @Override
     public User modifyUser(User user) {
         //users.removeIf(u -> Objects.nonNull(user.getId()) && user.getId().equals(u.getId()));
         //users.add(user);
-        return userRepositoryJdbc.modifyUser(user);
+       // return userRepositoryJdbc.modifyUser(user);
+        return userRepository.save(user);
     }
 
     @Override
     public int deleteUser(Long id) {
         //users.removeIf(user -> Objects.nonNull(id) && id.equals(user.getId()));
-        return userRepositoryJdbc.deleteUserById(id);
+        //return userRepositoryJdbc.deleteUserById(id);
+        userRepository.deleteById(id);
+        return 1;
     }
 
     @Override
     public User findUserById(Long id) {
-        return userRepositoryJdbc.findUserById(id);
+        //return userRepositoryJdbc.findUserById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     private List<User> loadUsers() {
