@@ -141,6 +141,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.3.2</version>
 			</plugin>
+			<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Getting+Started.html -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven3-plugin</artifactId>
@@ -162,6 +163,10 @@
 							<groupId>com.oth</groupId>
 							<artifactId>spring_core_crud_project</artifactId>
 							<type>war</type>
+							<properties>
+								<!-- The context path for the deployed application -->
+								<context>spring_core_crud_project</context>
+							</properties>
 						</deployable>
 					</deployables>
 				</configuration>
