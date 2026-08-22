@@ -2,6 +2,7 @@ package com.oth.business;
 
 import com.oth.dao.IDao;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 @Service("business")
@@ -20,7 +21,7 @@ public class BusinessImpl implements IBusiness {
 
 	@Override
 	public void fetchData() {
-		dao.GetData();
+		dao.getData();
 	}
 
 }

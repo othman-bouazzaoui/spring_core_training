@@ -6,9 +6,13 @@ public class BusinessImpl implements IBusiness {
 
 	private IDao dao;
 
+//	public BusinessImpl(IDao dao) {
+//		this.dao = dao;
+//	}
+
 	@Override
 	public void fetchData() {
-		dao.GetData();
+		dao.getData();
 	}
 
 	public void setDao(IDao dao) {

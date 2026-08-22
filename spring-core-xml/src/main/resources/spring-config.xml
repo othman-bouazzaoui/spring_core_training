@@ -4,10 +4,15 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- https://docs.spring.io/spring-framework/reference/core/beans/definition.html -->
+
     <!-- bean definitions here -->
     <bean id="dao"  class="com.oth.dao.DaoImpl"/>
     <bean id="business" class="com.oth.business.BusinessImpl">
-        <property name="dao" ref="dao"/>
+         <property name="dao" ref="dao"/>
+        <!-- constructor-arg name="dao" ref="dao"/-->
     </bean>
+
+    <alias name="business" alias="IBusiness"/>
 
 </beans>

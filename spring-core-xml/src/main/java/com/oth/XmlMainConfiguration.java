@@ -11,12 +11,10 @@ public class XmlMainConfiguration {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 
-		//Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+//		Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
 
-		/*
-		IBusiness business = (IBusiness) context.getBean("business");
-		business.fetchData();
-		*/
+//		IBusiness business = (IBusiness) context.getBean("IBusiness");
+//		business.fetchData();
 
 		context.getBean(IBusiness.class).fetchData();
 	}

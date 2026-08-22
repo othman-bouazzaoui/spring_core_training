@@ -2,7 +2,7 @@ package com.oth.dao;
 
 public class DaoImpl implements IDao {
 	@Override
-	public void GetData() {
+	public void getData() {
 		System.out.println("Fetch Data from DB .....");
 	}
 }
