@@ -1,0 +1,40 @@
+services:
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./BD/initBD.sql:/docker-entrypoint-initdb.d/initBD.sql:ro
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  spring_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: spring_core_crud_project:1.0
+    container_name: spring_app
+    environment:
+      MYSQL_HOSTNAME: mysql
+    ports:
+      - "9191:8080"
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

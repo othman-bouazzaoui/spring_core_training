@@ -7,6 +7,7 @@
 	<groupId>com.oth</groupId>
 	<artifactId>spring_core_crud_project</artifactId>
 	<version>1.0-SNAPSHOT</version>
+	<name>spring_core_crud_project</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -135,10 +136,14 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${project.artifactId}</warName>
+				</configuration>
 				<version>3.3.2</version>
 			</plugin>
 			<!-- https://codehaus-cargo.github.io/cargo/Maven+3+Plugin+Getting+Started.html -->
@@ -162,9 +167,10 @@
 						<deployable>
 							<groupId>com.oth</groupId>
 							<artifactId>spring_core_crud_project</artifactId>
+
 							<type>war</type>
 							<properties>
-								<!-- The context path for the deployed application -->
+								<!-- The context path for the deployed application -->,
 								<context>spring_core_crud_project</context>
 							</properties>
 						</deployable>

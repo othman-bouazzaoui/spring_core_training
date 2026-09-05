@@ -24,7 +24,7 @@ public class JpaDataSource {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JpaDataSource.class);
 
-	@Value("${spring.datasource.url:jdbc:mysql://localhost:3306/spring?useSSL=false&serverTimezone=UTC}")
+	@Value("${spring.datasource.url:jdbc:mysql://${MYSQL_HOSTNAME:localhost}:3306/spring?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC}")
 	private String jdbcUrl;
 
 	@Value("${spring.datasource.username:root}")
